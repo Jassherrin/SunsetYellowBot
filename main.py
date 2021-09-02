@@ -3,12 +3,24 @@
 import os
 import telebot
 import yfinance as yf
+import random
 #Keep Alive is from https://www.youtube.com/watch?v=0BT1rGMAFwQ
 from keep_alive import keep_alive
 my_secret = os.environ['API_KEY']
 bot = telebot.TeleBot(my_secret)
 
+#how to print random string
+#https://www.codegrepper.com/code-examples/python/print+random+string+from+list+python
+#import random
 
+#foo = ['a', 'b', 'c', 'd', 'e']
+#print(random.choice(foo))
+#https://www.therandomvibez.com/best-cheer-up-quotes/
+sad = ['Oh no! Take a deep breath and calm down first. It is fine if you are feeling sad but if you feel like it is a problem, please remember that you are the bigger person!', 'Life is better when you’re laughing.', 'Stars can’t shine without darkness.', 'Cheer up, tomorrow is another chance.','Stay Determined.','Tomorrow is another day.','You can do this. 00:00 is a new day. Stay determined till then. Look at how strong you are! Come on bud! You are at the home stretch!']
+#sad = ['', '', '', '', '']
+#random.choice(sad)
+
+#Help - Ctrl F from here
 @bot.message_handler(commands=['Help', 'help', 'Start', 'start'])
 def help(message):
     bot.reply_to(
@@ -16,38 +28,41 @@ def help(message):
         "Greetings: /Hiya /hiya /Hi /Hey /hey /yo /Heya /Yahallo /yahallo /heya /Yellow /yellow  /hello /Hello /hi\n \nIf you're feeling sad/depressed/suicidal: /Sad  /sad /depressed /Depressed /Depression /depression /feelingSuicidal\n   \nA bunch of fun stuff /Bored /bored \n \nRandom stock trade thingy from the og that I improved this bot from [IDK what this is but it's kinda cool so I kept in LOL] : /wsb"
     )
 
-
+sayHi = ['Hey! Hows it going?', 'Heya~ Whatz cooking good looking~', 'YOOO~', 'Konichiwa~', 'Wazzap~','Hola~ Soy Yellow!','Hello! Whatchu doin?']
 #Example of how a command looks
 @bot.message_handler(commands=['Hiya', 'hiya', 'Hi', 'Hey', 'hey'])
 def Hiya(message):
-    bot.reply_to(message, "Hey! Hows it going?")
+    bot.reply_to(message, random.choice(sayHi))
 
-
+sayYellow = [ 'Heya~ Whatz cooking good looking~',  'Hola~ Soy Yellow!','Yellow!','Hello, sunshine!','I come in peace!','Ahoy, matey!','Top of the mornin’ to ya!','Wazzup homeslice?','Aloha!','Que pasa!','Bonjour!','Ciaossu!']
 @bot.message_handler(
-    commands=['yo', 'Heya', 'Yahallo', 'yahallo', 'heya', 'Yellow', 'yellow'])
+    commands=['yo', 'Heya', 'Yahallo', 'yahallo', 'heya', 'Yellow', 'yellow','Aloha','aloha','bonjour','Bonjour'])
 def yo(message):
-    bot.reply_to(message, "Yellow!")
+    bot.reply_to(message, random.choice(sayYellow))
 
-
+sayHello = ['Hey! Hows it going?','Hello! Whatchu doin?','Hello! What is up?']
 @bot.message_handler(commands=['hello', 'Hello', 'hi'])
 def hello(message):
-    bot.send_message(message.chat.id, "Hello! What's up")
+    bot.send_message(message.chat.id, random.choice(sayHello))
 
 
 @bot.message_handler(
-    commands=['Sad', 'sad'])
-def sad(message):
+    commands=['Sad','sad'])
+def Sad(message):
     bot.reply_to(
         message,
-        "Oh no! Take a deep breath and calm down first. It's fine if you are feeling sad but if you feel like it is a problem, please remember that you are the bigger person"
+        random.choice(sad)
     )
+
+depressed = ['Oh no! Take a deep breath and calm down first. It is fine if you are feeling sad but if you feel like it is a problem, please remember that you are the bigger person']
+#random.choice(sad)
 
 @bot.message_handler(
     commands=['depressed', 'Depressed'])
 def depressed(message):
     bot.reply_to(
         message,
-        "Oh no! Take a deep breath and calm down first. It's fine if you are feeling sad but if you feel like it is a problem, please remember that you are the bigger person"
+        random.choice(depressed)
     )
 
 @bot.message_handler(
@@ -55,15 +70,18 @@ def depressed(message):
 def depression(message):
     bot.reply_to(
         message,
-        "Oh no! Take a deep breath and calm down first. It's fine if you are feeling sad but if you feel like it is a problem, please remember that you are the bigger person"
+        random.choice(depressed) + "\n \n"+ random.choice(sad) + "\n \nSamaritans of Singapore: 1800-221 4444\n Singapore Website: https://www.sos.org.sg/ \n \nSocial Awareness Education & Mental Health Resources \n Website: https://ttsresources.carrd.co/ \n \n International Suicide Helplines: https://www.opencounseling.com/suicide-hotlines \n \n"
     )
     
+#sad = ['', '', '', '', '']
+#random.choice(sad)
+
 @bot.message_handler(
-    commands=['feelingSuicidal'])
+    commands=['feelingSuicidal','feelingsuicidal'])
 def feelingSuicidal(message):
     bot.reply_to(
         message,
-        "Hold on. Please don't let go yet. \n \nSamaritans of Singapore: 1800-221 4444\n Singapore Website: https://www.sos.org.sg/ \n \nSocial Awareness Education & Mental Health Resources \n Website: https://ttsresources.carrd.co/ \n \n International Suicide Helplines: https://www.opencounseling.com/suicide-hotlines \n \n")
+        random.choice(sad)+"\n \nHold on. Please don't let go yet. \n \nSamaritans of Singapore: 1800-221 4444\n Singapore Website: https://www.sos.org.sg/ \n \nSocial Awareness Education & Mental Health Resources \n Website: https://ttsresources.carrd.co/ \n \n International Suicide Helplines: https://www.opencounseling.com/suicide-hotlines \n \n")
 
 
 @bot.message_handler(commands=['Bored', 'bored', 'boring'])
