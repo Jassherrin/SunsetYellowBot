@@ -2,6 +2,7 @@
 #This code was mostly from https://www.youtube.com/watch?v=NwBWW8cNCP4&t=196s
 #I'm trying edit, have fun and maybe improve on the YouTube video's Telegram chatbot finally making it my own
 import telebot
+import os
 # import yfinance as yf
 import random
 # import requests
@@ -9,7 +10,7 @@ import random
 #Keep Alive is from https://www.youtube.com/watch?v=0BT1rGMAFwQ
 from keep_alive import keep_alive
 
-my_secret = '1975399347:AAHukfdVod7Tb2NtyUm2K_VTdBSRghCsyn0'
+my_secret = os.environ['TELEGRAM_TOKEN']
 bot = telebot.TeleBot(my_secret)
 #how to print random string
 #https://www.codegrepper.com/code-examples/python/print+random+string+from+list+python
@@ -205,7 +206,7 @@ tarotpentacle = [
 
 
 @bot.message_handler(commands=['tarot', 'Tarot'])
-def Sad(message):
+def Tarot(message):
   bot.reply_to(
     message, "journey- \n\nPast: " + random.choice(tarot) + "\n\nPresent: " +
     random.choice(tarot) + "\n\nFuture: " + random.choice(tarot) +
